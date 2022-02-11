@@ -7,4 +7,5 @@ Repository per il progetto di PCTO anno scolastico 2021/2022:
 
 
 *All rights reserved.*
+
 ![logo-GA](https://user-images.githubusercontent.com/81015568/153563958-57c4e29f-db5f-4806-ae52-a86809e5cd09.png)
