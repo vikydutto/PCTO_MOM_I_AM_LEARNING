@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ButtonOption : MonoBehaviour
-{
+/** Pulsante per entrare nel menù opzioni */
+public class ButtonOption : MonoBehaviour{
     public static void OnMouseOver() {
         /*Menu.bplayButton=true;
         Menu.bMenuHome=true;*/
