@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ButtonRules : MonoBehaviour
-{
+/** Pulsante  delle regole */
+public class ButtonRules : MonoBehaviour{
     public static void OnMouseOver() {
         /*Menu.bplayButton=true;
         Menu.bMenuHome=true;*/
