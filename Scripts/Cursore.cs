@@ -2,37 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+using UnityEngine.SceneManagement; // inclusione delle librerie per controllare il movimento delle scene
 
 public class Cursore : MonoBehaviour
 {
-    public AudioSource SuonoSelezione;
-    public GameObject menuHome, optionMenu, optionIta, optionEng, optionBack;
-    public Button PlayButton, OptionButton, QuizButton, TrisButton, Forza4Button, BackButton, ItaButton, EngButton, BackOption;
+    public AudioSource SuonoSelezione; // variabile per la musica
+    public GameObject menuHome, optionMenu, optionIta, optionEng, optionBack; // menu: scene
+    public Button PlayButton, OptionButton, QuizButton, TrisButton, Forza4Button, BackButton, ItaButton, EngButton, BackOption; // pulasnti
     public Mano hand;
     private float x;
-    private float y;
-    private int fase;
+    private float y; // coordinate
+    private int fase; // private: all'interno dell'unica scena
 
     public static int lingua=0;
     private bool exManoChiusa;
-    void Start()
-    {
+    
+    void Start(){ // posizione della mano ogni volta che parte una scena si "azzera" e la mano viene vista aperta
         y = gameObject.transform.position.y;
         x = gameObject.transform.position.x;
         fase = 0;
         exManoChiusa = false;
     }
-    void Update()
-    {
+    void Update(){
         gameObject.transform.position = new Vector3(x, y, transform.position.z);
 
         if (fase == 0)
         {
-            if (isOnButton(PlayButton))
+            if (isOnButton(PlayButton)) // se è sulla figura del bottone play
             {
                 ButtonPlay.OnMouseOver();
-                if (hand.isManoChiusa() && exManoChiusa == false)
+                if (hand.isManoChiusa() && exManoChiusa == false) // selezione
                 {
                     SuonoSelezione.Play();
                     fase = 1;
@@ -41,14 +40,13 @@ public class Cursore : MonoBehaviour
                     Menu.bGamesMenu = true;
                     exManoChiusa = true;
                 }
-            }
-            else
+            }else
             {
                 ButtonPlay.OnMouseExit();
-                if (isOnButton(OptionButton))
+                if (isOnButton(OptionButton)) // se è sulla figura del bottone option
                 {
                     ButtonOption.OnMouseOver();
-                    if (hand.isManoChiusa() && exManoChiusa == false)
+                    if (hand.isManoChiusa() && exManoChiusa == false) // selezione
                     {
                         SuonoSelezione.Play();
                         exManoChiusa = true;
@@ -63,7 +61,7 @@ public class Cursore : MonoBehaviour
                 }
             }
         }
-        if (fase == 1)
+        if (fase == 1) // fasi della schermata: fase menu = 0, fase scelta gioco = 1, options = 2
         {
             if (isOnButton(QuizButton))
             {
@@ -78,7 +76,7 @@ public class Cursore : MonoBehaviour
             else
             {
                 ButtonQuiz.OnMouseExit();
-                if (isOnButton(TrisButton))
+                if (isOnButton(TrisButton)) // scelta tris in fase 1
                 {
                     ButtonTris.OnMouseOver();
                     ButtonQuiz.OnMouseOver();
@@ -91,7 +89,7 @@ public class Cursore : MonoBehaviour
                 else
                 {
                     ButtonTris.OnMouseExit();
-                    if (isOnButton(Forza4Button))
+                    if (isOnButton(Forza4Button)) 
                     {
                         ButtonForza4.OnMouseOver();
                         if (hand.isManoChiusa() && exManoChiusa == false)
@@ -103,7 +101,7 @@ public class Cursore : MonoBehaviour
                     else
                     {
                         ButtonForza4.OnMouseExit();
-                        if (isOnButton(BackButton))
+                        if (isOnButton(BackButton)) // ultimo pulsante della scena
                         {
                             ButtonBack.OnMouseOver();
                             if (hand.isManoChiusa() && exManoChiusa == false)
@@ -124,7 +122,7 @@ public class Cursore : MonoBehaviour
                 }
             }
         }
-        if (fase == 2)
+        if (fase == 2) // opzioni == scelta della lingua
         {
             if (isOnButton(BackOption))
             {
@@ -138,7 +136,7 @@ public class Cursore : MonoBehaviour
                     menuHome.SetActive(true);
                     optionBack.SetActive(false);
                 }
-            }
+            } // se è sul pulsante back dalla fase 2 ritorna alla 0: menù iniziale
             else
             {
                 optionMenu.SetActive(true);
@@ -213,7 +211,7 @@ public class Cursore : MonoBehaviour
         return gameObject.transform.position.x > cordx - width / 2 && gameObject.transform.position.x < cordx + width / 2 && gameObject.transform.position.y > cordy - height / 2 && gameObject.transform.position.y < cordy + height / 2;
     }
 
-    public bool isOnQ(GameObject q)
+    public bool isOnQ(GameObject q) // q = quadrato
     {
         float width = q.GetComponent<RectTransform>().rect.width;
         float height = q.GetComponent<RectTransform>().rect.height;
