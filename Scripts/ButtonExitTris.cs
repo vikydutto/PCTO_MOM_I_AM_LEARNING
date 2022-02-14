@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/** Bottone "Back"/"Indietro" generale */
 public class ButtonExitTris : MonoBehaviour
 {
     public static void OnMouseOver() {
