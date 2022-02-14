@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ButtonPlayTris : MonoBehaviour
-{
+/** Bottone specifico per far startare il gioco del Tris */
+public class ButtonPlayTris : MonoBehaviour{
     public static void OnMouseOver() {
         Tris.bPausePlay=true;
         Tris.bPause=false;
