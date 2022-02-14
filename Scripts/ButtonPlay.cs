@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ButtonPlay : MonoBehaviour
-{
+/** Pulsante in generale per far startare il minigioco, qualsiasi esso sia */
+public class ButtonPlay : MonoBehaviour{
     public static void OnMouseOver() {
         /*Menu.bplayButton=true;
         Menu.bMenuHome=true;*/
