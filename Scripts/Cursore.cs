@@ -4,7 +4,9 @@ using UnityEngine; // utilizzata per accesso ad accelerometro e multi-touch sui 
 using UnityEngine.UI; // header per la user interface
 using UnityEngine.SceneManagement; // inclusione della libreria per controllare il movimento delle scene
 
-public class Cursore : MonoBehaviour {
+/** Classe del cursore: con tutti i suoi attributi e tutti i suoi metodi*/
+
+public class Cursore : MonoBehaviour { // MonoBehaviour: la classe da cui tutti gli script derivano in Unity
     public AudioSource SuonoSelezione; // variabile per la musica: da dove proviene il suono della scena
     public GameObject menuHome, optionMenu, optionIta, optionEng, optionBack; // menu (scene) e pulsanti
     public Button PlayButton, OptionButton, QuizButton, TrisButton, Forza4Button, BackButton, ItaButton, EngButton, BackOption; // pulasnti
