@@ -14,15 +14,15 @@ public class ManoTris : MonoBehaviour {  // MonoBehaviour: la classe da cui tutt
     // stessi attributi per anche le altre mani
     
     void Update() {
-        sx=palmo.transform.position.x;
-        sy=palmo.transform.position.y;
-        sz=palmo.transform.position.z; // coordinate del palmo
-        dx=dito.transform.position.x;
-        dy=dito.transform.position.y;
-        dz=dito.transform.position.z; // coordinate del dito medio
+        sx = palmo.transform.position.x;
+        sy = palmo.transform.position.y;
+        sz = palmo.transform.position.z; // coordinate del palmo
+        dx = dito.transform.position.x;
+        dy = dito.transform.position.y;
+        dz = dito.transform.position.z; // coordinate del dito medio
 
-        x= ((sx + 75.0f)*2400/450.0f)-130;
-        y= (sy + 40)*1500/220-140; // numeri per regolazre posizione e velocità cursore nel gioco del tris
+        x = ((sx + 75.0f)*2400/450.0f)-130;
+        y = (sy + 40)*1500/220-140; // numeri per regolazre posizione e velocità cursore nel gioco del tris
         cursore.setX(x);
         cursore.setY(y); // si passano i valori al cursore
 
