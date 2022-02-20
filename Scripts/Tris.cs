@@ -362,42 +362,32 @@ public class Tris : MonoBehaviour { // MonoBehaviour: la classe da cui tutti gli
                     ButtonExitTris.OnMouseOver();
                     if (hand.isManoChiusa() && exManoChiusa == false) {
                         selezione.Play();
-                        SceneManager.LoadScene(0);
-                    } else exManoChiusa = hand.isManoChiusa();
+                        SceneManager.LoadScene(0); // scena zero = menù principale
+                    } else exManoChiusa = hand.isManoChiusa(); // mano passato: sistuazione presente mano
                 }
-                else
-                {
-                    ButtonExitTris.OnMouseExit();
-                }
+                else ButtonExitTris.OnMouseExit(); // si esce e si va nel menù
             }
         }
     }
 
-    bool controlloVittoria(int turno)
-    {
+    bool controlloVittoria(int turno) {
         int[,] comb = { { 0, 1, 2 }, { 3, 4, 5 }, { 6, 7, 8 }, { 0, 4, 8 }, { 2, 4, 6 }, { 0, 3, 6 }, { 1, 4, 7 }, { 2, 5, 8 } };
-        bool trov = false;
-        int k = 0;
-        while (trov == false && k < 8)
-        {
-
-            if (campo[comb[k, 0]] == turno && campo[comb[k, 1]] == turno && campo[comb[k, 2]] == turno)
-            {
-                trov = true;
-            }
-            k += 1;
+        bool trov = false; // vittoria non è attiva all'inizio
+        int k = 0; // contatore da 0
+        while (trov == false && k < 8) { // while che va al massimo a fare 9 giri
+            // se la cella ha lo stesso valoore del turno come nelle combinazioni sovrascritte
+            if (campo[comb[k, 0]] == turno && campo[comb[k, 1]] == turno && campo[comb[k, 2]] == turno) trov = true; // combinazione trovata
+            k += 1; // altrimenti non c'è la vittoria
         }
-        return trov;
+        return trov; // ritorno del menìtodo per il controllo della vittoria -> trov == victory
     }
-    bool isADraw()
-    {
-        bool tro = false;
+    bool isADraw() {
+        bool tro = false; // inizializzato a falso
         int k = 0;
-        while (k < 9 && tro == false)
-        {
-            tro = (campo[k] == 404);
-            k++;
+        while (k < 9 && tro == false) {
+            tro = (campo[k] == 404); // se la cella è vuota allora tro == true
+            k++; // si devono controllare tutte le celle finché tro == false
         }
-        return !tro;
+        return !tro; // ritorna il valore NEGATO di tro
     }
 }
