@@ -9,8 +9,7 @@ public class ManoCampoDaTennis : MonoBehaviour{ // MonoBehaviour: la classe da c
     private float x = 0, y = 0; // coordinate del cursore iniazializzate a 0
     public CursoreCampoDaTennis cursore; // cursore di tipo CursoreCampoDaTennis (classe)
 
-    void Update()
-    {
+    void Update() {
         sx = palmo.transform.position.x;
         sy = palmo.transform.position.y;
         sz = palmo.transform.position.z; // coordinate del palmo
