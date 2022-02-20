@@ -3,6 +3,8 @@ using System.Collections.Generic; // 2 headers scritte di default per utilizzare
 using UnityEngine; // utilizzata per accesso ad accelerometro e multi-touch sui devices
 using UnityEngine.SceneManagement; // inclusione della libreria per controllare il movimento delle scene
 
+/** classe generale per ogni Menù: classe */
+
 public class Menu : MonoBehaviour { // MonoBehaviour: la classe da cui tutti gli script derivano in Unity
     public GameObject MenuHome; // menù principale: quello di inizio
     public GameObject OptionMenu,playButton,optionButton,RulesButton, QuizButton, TrisButton, Forza4Button, GamesMenu, BackButton; // ogni bottone della fase 0 e 1
