@@ -3,6 +3,7 @@ using System.Collections.Generic; // 2 headers scritte di default per utilizzare
 using UnityEngine; // utilizzata per accesso ad accelerometro e multi-touch sui devices
 
 /** Pulsante per entrare nel menù opzioni */
+
 public class ButtonOption : MonoBehaviour { // MonoBehaviour: la classe da cui tutti gli script derivano in Unity
     public static void OnMouseOver() { // se il cursore è sul bottone delle opzioni la scena cambierà andando sulla shermata richiesta dall'utente
         /*Menu.bplayButton=true;
