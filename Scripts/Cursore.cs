@@ -1,94 +1,89 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement; // inclusione delle librerie per controllare il movimento delle scene
+using System.Collections.Generic; // 2 headers scritte di default per utilizzare Unity
+using UnityEngine; // utilizzata per accesso ad accelerometro e multi-touch sui devices
+using UnityEngine.UI; // header per la user interface
+using UnityEngine.SceneManagement; // inclusione della libreria per controllare il movimento delle scene
 
-public class Cursore : MonoBehaviour
-{
-    public AudioSource SuonoSelezione; // variabile per la musica
-    public GameObject menuHome, optionMenu, optionIta, optionEng, optionBack; // menu: scene
+public class Cursore : MonoBehaviour {
+    public AudioSource SuonoSelezione; // variabile per la musica: da dove proviene il suono della scena
+    public GameObject menuHome, optionMenu, optionIta, optionEng, optionBack; // menu (scene) e pulsanti
     public Button PlayButton, OptionButton, QuizButton, TrisButton, Forza4Button, BackButton, ItaButton, EngButton, BackOption; // pulasnti
-    public Mano hand;
+    public Mano hand; // mano
     private float x;
-    private float y; // coordinate
-    private int fase; // private: all'interno dell'unica scena
+    private float y; // coordinate della mano == cursore
+    private int fase; // per capire quando cambiare scena
 
-    public static int lingua=0;
-    private bool exManoChiusa;
+    public static int lingua = 0; // preimpostazione di una lingua
+    private bool exManoChiusa; // booleano per la mano
     
     void Start(){ // posizione della mano ogni volta che parte una scena si "azzera" e la mano viene vista aperta
-        y = gameObject.transform.position.y;
-        x = gameObject.transform.position.x;
-        fase = 0;
-        exManoChiusa = false;
+        y = gameObject.transform.position.y; // rilevazione grazie all'UltraLeap della posizione y della mano
+        x = gameObject.transform.position.x; // rilevazione grazie all'UltraLeap della posizione x della mano
+        fase = 0; // fase 0: menù principale (show del play e dell'option buttons)
+        exManoChiusa = false; // la mano viene da subito vista come aperta
     }
-    void Update(){
-        gameObject.transform.position = new Vector3(x, y, transform.position.z);
+    void Update(){ // la scena deve essere aggiornata sempre: per la pozizione della mano
+        gameObject.transform.position = new Vector3(x, y, transform.position.z); // posizione della mano
 
-        if (fase == 0)
+        if (fase == 0) // schermata del menù di inizio -- fasi della schermata: fase menu principale == 0, fase menù scelta gioco == 1, menù options == 2
         {
             if (isOnButton(PlayButton)) // se è sulla figura del bottone play
             {
-                ButtonPlay.OnMouseOver();
-                if (hand.isManoChiusa() && exManoChiusa == false) // selezione
+                ButtonPlay.OnMouseOver(); // invoco il metodo per far cambiare la scena: menù della scelta dei giochi
+                if (hand.isManoChiusa() && exManoChiusa == false) // selezione: all'oggetto hand invoco il metodo isManoChiusa e mi chiedo se lo stato precedente della mano NON fosse "chiuso"
                 {
-                    SuonoSelezione.Play();
-                    fase = 1;
+                    SuonoSelezione.Play(); // quando clicco il pulsante parte l'audio
+                    fase = 1; // cambia schermata: scena della scelta del gioco
                     Menu.bMenuHome = false;
-                    Menu.bplayButton = false;
-                    Menu.bGamesMenu = true;
-                    exManoChiusa = true;
+                    Menu.bplayButton = false; // bisogna settarle a false per non creare bug
+                    Menu.bGamesMenu = true; // impostazioni della scena menu
+                    exManoChiusa = true; // stato passato della mano: chiuso
                 }
             }else
             {
-                ButtonPlay.OnMouseExit();
-                if (isOnButton(OptionButton)) // se è sulla figura del bottone option
+                ButtonPlay.OnMouseExit(); // se il cursore non è sul pulsante "Play" allora:
+                if (isOnButton(OptionButton)) // se è sulla figura del bottone "Option"
                 {
-                    ButtonOption.OnMouseOver();
-                    if (hand.isManoChiusa() && exManoChiusa == false) // selezione
+                    ButtonOption.OnMouseOver(); // si attiva una variabile e si disattiva l'altra per cambiare scena
+                    if (hand.isManoChiusa() && exManoChiusa == false) // selezione uguale a quella di prima
                     {
                         SuonoSelezione.Play();
-                        exManoChiusa = true;
-                        menuHome.SetActive(false);
-                        optionMenu.SetActive(true);
-                        fase = 2;
+                        exManoChiusa = true; // stato passato della mano: chiuso
+                        menuHome.SetActive(false); // si disattiva il menù principale
+                        optionMenu.SetActive(true); // si ativa il pulsante delle opzioni
+                        fase = 2; // scena delle opzioni
                     }
                 }
-                else
-                {
-                    ButtonOption.OnMouseExit();
-                }
+                else ButtonOption.OnMouseExit(); // se non è invece sul pulsante delle opzioni si tiene la schermata del menù principale
             }
         }
-        if (fase == 1) // fasi della schermata: fase menu = 0, fase scelta gioco = 1, options = 2
+        if (fase == 1) // schermata del menù scelta dei giochi -- fasi della schermata: fase menu principale == 0, fase menù scelta gioco == 1, menù options == 2
         {
-            if (isOnButton(QuizButton))
+            if (isOnButton(QuizButton)) // se il mouse è sul pulsante dei quiz
             {
-                ButtonQuiz.OnMouseOver();
+                ButtonQuiz.OnMouseOver(); // allora si invoca questo metodo che cambia lo stato di alcune variabili
                 if (hand.isManoChiusa() && exManoChiusa == false)
                 {
                     SuonoSelezione.Play();
-                    SceneManager.LoadScene(1);
+                    SceneManager.LoadScene(1); // si passa al gioco: cambia la scena facendo il load della scena 1: gioco del quiz
                 }
 
-            }
-            else
+            } else
             {
-                ButtonQuiz.OnMouseExit();
-                if (isOnButton(TrisButton)) // scelta tris in fase 1
+                ButtonQuiz.OnMouseExit(); // se non è sul bottone della scelta del gioco del quiz
+                if (isOnButton(TrisButton)) // scelta del gioco tris conil mouse sopra il pulsante "Tris"
                 {
                     ButtonTris.OnMouseOver();
                     ButtonQuiz.OnMouseOver();
                     if (hand.isManoChiusa() && exManoChiusa == false)
                     {
                         SuonoSelezione.Play();
-                        SceneManager.LoadScene(2);
+                        SceneManager.LoadScene(2); // si passa al gioco: cambia la scena facendo il load della scena 2: gioco del tris
                     }
                 }
                 else
                 {
-                    ButtonTris.OnMouseExit();
+                    ButtonTris.OnMouseExit(); // 
                     if (isOnButton(Forza4Button)) 
                     {
                         ButtonForza4.OnMouseOver();
