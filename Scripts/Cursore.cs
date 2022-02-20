@@ -74,144 +74,117 @@ public class Cursore : MonoBehaviour {
                 if (isOnButton(TrisButton)) // scelta del gioco tris conil mouse sopra il pulsante "Tris"
                 {
                     ButtonTris.OnMouseOver();
-                    ButtonQuiz.OnMouseOver();
+                    ButtonQuiz.OnMouseOver(); // le chiamo entrambe per impostare le varie variabili per il cambio delle scene
                     if (hand.isManoChiusa() && exManoChiusa == false)
                     {
                         SuonoSelezione.Play();
                         SceneManager.LoadScene(2); // si passa al gioco: cambia la scena facendo il load della scena 2: gioco del tris
                     }
-                }
-                else
+                }else
                 {
-                    ButtonTris.OnMouseExit(); // 
-                    if (isOnButton(Forza4Button)) 
+                    ButtonTris.OnMouseExit(); // se il mouse non è più sul bottone del tris
+                    if (isOnButton(Forza4Button)) // ma è su quello del Forza 4 allora:
                     {
-                        ButtonForza4.OnMouseOver();
+                        ButtonForza4.OnMouseOver(); // dato che il mouse è sopra si chiama questo attributo per fargli cambiare le booleane apposite
                         if (hand.isManoChiusa() && exManoChiusa == false)
                         {
                             SuonoSelezione.Play();
-                            SceneManager.LoadScene(3);
+                            SceneManager.LoadScene(3); // load della scena 3: gioco di Forza 4
                         }
-                    }
-                    else
+                    }else
                     {
-                        ButtonForza4.OnMouseExit();
-                        if (isOnButton(BackButton)) // ultimo pulsante della scena
+                        ButtonForza4.OnMouseExit(); // non è sul pulsante del mini-game forza 4
+                        if (isOnButton(BackButton)) // ultimo pulsante della scena: il cursore è sul bottone che dice "Indietro" o "Back" (dipende: lingua impostata dall'utente)
                         {
-                            ButtonBack.OnMouseOver();
+                            ButtonBack.OnMouseOver(); // si cambia il valore delle variabili con il metodo della classe ButtonBack
                             if (hand.isManoChiusa() && exManoChiusa == false)
                             {
                                 SuonoSelezione.Play();
-                                fase = 0;
+                                fase = 0; // si ritorna alla fase 0 == menù principale (coi bottoni play e option)
                                 Menu.bGamesMenu = false;
                                 Menu.bBackButton = false;
-                                Menu.bMenuHome = true;
+                                Menu.bMenuHome = true; // menù della fase 0
                                 exManoChiusa = true;
                             }
                         }
-                        else
-                        {
-                            ButtonBack.OnMouseExit();
-                        }
+                        else ButtonBack.OnMouseExit();
                     }
                 }
             }
         }
-        if (fase == 2) // opzioni == scelta della lingua
+        if (fase == 2) // opzioni == scelta della lingua dato ch è il menù delle opzioni
         {
-            if (isOnButton(BackOption))
+            if (isOnButton(BackOption)) // se è sul pulsante "back" della schermata delle opzioni
             {
-                optionMenu.SetActive(false);
-                optionBack.SetActive(true);
+                optionMenu.SetActive(false); // disattivo il menù delle opzioni
+                optionBack.SetActive(true); // attivo la funzione del pulsante back
                 if (hand.isManoChiusa() && exManoChiusa == false)
                 {
                     exManoChiusa = true;
-                    fase = 0;
+                    fase = 0; // ritorno al menù principale
                     SuonoSelezione.Play();
-                    menuHome.SetActive(true);
-                    optionBack.SetActive(false);
+                    menuHome.SetActive(true); // e attivo quella del menù principale iniziale
+                    optionBack.SetActive(false); // ora che ho utilizzato il bottone ne disattivo la funzione
                 }
-            } // se è sul pulsante back dalla fase 2 ritorna alla 0: menù iniziale
-            else
+            }else
             {
-                optionMenu.SetActive(true);
+                optionMenu.SetActive(true); // è ora attivo il menù a cui si arriva col tasto delle opzioni dal menù principale
                 optionBack.SetActive(false);
-                if (isOnButton(EngButton))
+                if (isOnButton(EngButton)) // pulsante per scegliere la lingua inglese: la "mano" ci è sopra
                 {
-                    optionMenu.SetActive(false);
-                    optionEng.SetActive(true);
+                    optionMenu.SetActive(false); // si disattiva l'azione di cambiare scena
+                    optionEng.SetActive(true); // si attiva la funzione del bottone
                     if (hand.isManoChiusa() && exManoChiusa == false)
                     {
-                        Cursore.lingua=1;
+                        Cursore.lingua = 1; // il cursore si sposta sulla scelta della lingua: la lingua inglese è quella 1
                         exManoChiusa = true;
                         SuonoSelezione.Play();
                     }
-                }
-                else
+                }else
                 {
                     optionMenu.SetActive(true);
-                    optionEng.SetActive(false);
-                    if (isOnButton(ItaButton))
+                    optionEng.SetActive(false); // mi assicuro che le variabili siano impostate a dovere
+                    if (isOnButton(ItaButton)) // se è sul pulsante della lingua italiana
                     {
                         optionMenu.SetActive(false);
-                        optionIta.SetActive(true);
+                        optionIta.SetActive(true); // si attiva il "potere" della lingua italiana
                         if (hand.isManoChiusa() && exManoChiusa == false)
                         {
-                            Cursore.lingua=0;
+                            Cursore.lingua = 0; // la lingua italiana corrisponde alla lingua 0
                             exManoChiusa = true;
                             SuonoSelezione.Play();
                         }
-                    }else{
-                        optionMenu.SetActive(true);
+                    }else{ // nell'ultimo caso
+                        optionMenu.SetActive(true); // la scena è statica della scena del menù opzioni
                         optionIta.SetActive(false);
                     }
                 }
             }
         }
-        if (exManoChiusa == true && !hand.isManoChiusa())
-        {
-            exManoChiusa = false;
-        }
-
+        if (exManoChiusa == true && !hand.isManoChiusa()) exManoChiusa = false; // imposto lo stato passato della mano ad aperto: se lo stato passato della stessa era true e se il risultato del metodo diceva che fosse aperta
     }
 
-    public void setX(float x)
-    {
-        this.x = x;
-    }
+    public void setX(float x) this.x = x;
+    public void setY(float y) this.y = y;
+    public float getX() return x;
+    public float getY() return y; // setter e getter per le variabili della posizione della mano
 
-    public void setY(float y)
-    {
-        this.y = y;
-    }
-
-    public float getX()
-    {
-        return x;
-    }
-
-    public float getY()
-    {
-        return y;
-
-    }
-
-    private bool isOnButton(Button b)
+    private bool isOnButton(Button b) // metodo chiamato diverse volte nel codice per capire se il cursore era su un pulsante (qualsiasi)
     {
         float width = b.GetComponent<RectTransform>().rect.width;
-        float height = b.GetComponent<RectTransform>().rect.height;
+        float height = b.GetComponent<RectTransform>().rect.height; // prese la larghezza e l'altezza del bottone (prese come rettangoli)
         float cordx = b.transform.position.x;
-        float cordy = b.transform.position.y;
+        float cordy = b.transform.position.y; // cordinate x,y dell'angolo del bottone: quello in alto a sx
 
         return gameObject.transform.position.x > cordx - width / 2 && gameObject.transform.position.x < cordx + width / 2 && gameObject.transform.position.y > cordy - height / 2 && gameObject.transform.position.y < cordy + height / 2;
-    }
+    } // ritorna dalla fx: se il cursore è appunto nell'area del bottone
 
-    public bool isOnQ(GameObject q) // q = quadrato
+    public bool isOnQ(GameObject q) // q == quadrato -- dice se la mano è su un quadrato
     {
         float width = q.GetComponent<RectTransform>().rect.width;
-        float height = q.GetComponent<RectTransform>().rect.height;
+        float height = q.GetComponent<RectTransform>().rect.height; // stesso metodo per prendere la posizione dei pulsanti
         float cordx = q.transform.position.x * 10;
-        float cordy = q.transform.position.y * 10;
+        float cordy = q.transform.position.y * 10; // angolo in alto a sx del quadrato
         return gameObject.transform.position.x * 10 > cordx - width / 2 && gameObject.transform.position.x * 10 < cordx + width / 2 && gameObject.transform.position.y * 10 > cordy - height / 2 && gameObject.transform.position.y * 10 < cordy + height / 2;
-    }
+    } // ritorno del booleano per inidicare appunto se il mouse è sul quadrato
 }
