@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic; // 2 headers scritte di default per utilizzare Unity
 using UnityEngine; // utilizzata per accesso ad accelerometro e multi-touch sui devices
 
+/** Cdice per far muovere la pallina nelle risposte direttamente e per farla tornare al centro */
+
 public class MuoviPallina : MonoBehaviour { // MonoBehaviour: la classe da cui tutti gli script derivano in Unity
     public static bool isWaiting; // statiche in modo che sia comune a tutti sappiano che la pallina è ferma
     public static Vector3 answer, answer1, answer2, answer3, answer4; // ogni risposta più quella per "attivarle"
