@@ -4,6 +4,8 @@ using UnityEngine; // utilizzata per accesso ad accelerometro e multi-touch sui 
 using TMPro; // header per utilizzare i font carivcati su unity dal programmatore: Text Mash Pro
 using UnityEngine.UI; // header per la user interface
 
+/** Script della Risposta: "gameObject" generale */
+
 public class Risposta : MonoBehaviour { // MonoBehaviour: la classe da cui tutti gli script derivano in Unity
     public TextMeshProUGUI t; // componente font
     public string testo; // testo della risposta: la stringa
