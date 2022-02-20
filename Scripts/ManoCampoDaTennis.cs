@@ -6,7 +6,7 @@ using UnityEngine.UI; // header per la user interface
 public class ManoCampoDaTennis : MonoBehaviour{ // MonoBehaviour: la classe da cui tutti gli script derivano in Unity
     public GameObject palmo, dito; // palmo e dito per la mano nel gioc del campo da tennis
     private float sx,sy,sz, dx,dy,dz; // coordinate del palmo nella realtà: rilevate dall'UltraLeap
-    private float x = 0,y = 0; // coordinate del cursore
+    private float x = 0, y = 0; // coordinate del cursore iniazializzate a 0
     public CursoreCampoDaTennis cursore; // cursore di tipo CursoreCampoDaTennis (classe)
 
     void Update()
