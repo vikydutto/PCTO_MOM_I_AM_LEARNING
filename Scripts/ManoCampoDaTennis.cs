@@ -3,6 +3,8 @@ using System.Collections.Generic; // 2 headers scritte di default per utilizzare
 using UnityEngine; // utilizzata per accesso ad accelerometro e multi-touch sui devices
 using UnityEngine.UI; // header per la user interface
 
+/** Mano per il mini-game del quiz */
+
 public class ManoCampoDaTennis : MonoBehaviour{ // MonoBehaviour: la classe da cui tutti gli script derivano in Unity
     public GameObject palmo, dito; // palmo e dito per la mano nel gioc del campo da tennis
     private float sx,sy,sz, dx,dy,dz; // coordinate del palmo nella realtà: rilevate dall'UltraLeap
