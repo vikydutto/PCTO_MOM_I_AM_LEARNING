@@ -3,6 +3,8 @@ using System.Collections.Generic; // 2 headers scritte di default per utilizzare
 using UnityEngine; // utilizzata per accesso ad accelerometro e multi-touch sui devices
 using UnityEngine.UI; // header per la user interface
 
+/** Script per la classe Mano generale */
+
 public class Mano : MonoBehaviour { // MonoBehaviour: la classe da cui tutti gli script derivano in Unity
     public GameObject palmo, dito; // oggetti del gioco che rilevano la posizione del palmo della mano e del dito medio
     private float sx, sy, sz, dx, dy, dz; // variabili per le posizioni del palmo e del dito
